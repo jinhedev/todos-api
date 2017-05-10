@@ -12,13 +12,16 @@
 
 ActiveRecord::Schema.define(version: 20170508202029) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "items", force: :cascade do |t|
     t.string   "name"
     t.boolean  "done"
     t.integer  "todo_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["todo_id"], name: "index_items_on_todo_id"
+    t.index ["todo_id"], name: "index_items_on_todo_id", using: :btree
   end
 
   create_table "todos", force: :cascade do |t|
